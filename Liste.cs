@@ -10,7 +10,7 @@ namespace csharp_biblioteca
     {
         public List<Libro> listaLibri = new List<Libro>();
 
-        public List<Dvd> listaDvd = new List<Dvd>();
+        //public List<Dvd> listaDvd = new List<Dvd>();
 
         public Liste()
         {
@@ -20,10 +20,11 @@ namespace csharp_biblioteca
             listaLibri.Add(new Libro("9585623417", 311, "Ma gli androidi sognano pecore elettriche?", 1968, "fantascienza", "Philip K. Dick", "j8", false));
 
 
-            listaDvd.Add(new Dvd(52412548, 2, "The mask", 1994, "commedia", "Chuck Russell", "c3", false));
+           /* listaDvd.Add(new Dvd(52412548, 2, "The mask", 1994, "commedia", "Chuck Russell", "c3", false));
             listaDvd.Add(new Dvd(00025142, 3, "Il signore degli anelli", 2001, "fantasy", "Peter Jackson", "f1", false));
             listaDvd.Add(new Dvd(85858965, 2, "Blade Runner 2049", 2017, "cyberpunk", "Ridley Scott", "h3", false));
             listaDvd.Add(new Dvd(74185254, 2, "The Matrix", 1999, "fantascienza", "Wachowsky", "b7", false));
+           */
         }
 
         public bool CheckBook(string param)
@@ -44,6 +45,7 @@ namespace csharp_biblioteca
             return check;
         }
 
+        /*
         public bool CheckDvd(string param)
         {
             bool check = false;
@@ -60,7 +62,7 @@ namespace csharp_biblioteca
                 }
             }
             return check;
-        }
+        }*/
 
         public string DetailBook(string param)
         {
@@ -80,7 +82,7 @@ namespace csharp_biblioteca
             }
             return detail;
         }
-
+        /*
         public string DetailDvd(string param)
         {
             string detail = "";
@@ -97,6 +99,6 @@ namespace csharp_biblioteca
                 }
             }
             return detail;
-        }
+        }*/
     }
 }
