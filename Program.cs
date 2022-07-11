@@ -12,6 +12,8 @@ int scelta1 = Int32.Parse(Console.ReadLine());
 
 Sistem call = new Sistem();
 
+bool account = false;
+
 if(scelta1 == 1)
 {
     call.AddUtente();
@@ -34,10 +36,15 @@ if(scelta1 == 1)
     {
         Console.WriteLine("Utente non trovato");
     }*/
-    call.LogUtente();
+    account = call.LogUtente();
 
 }
 
+if (account)
+{
+    call.CercaLibro();
+}
+/*
 Console.WriteLine("Accesso effettuato, cosa vuoi fare?");
 Console.WriteLine("1. Cerca Libro");
 //Console.WriteLine("2. Cerca Dvd");
@@ -72,7 +79,7 @@ if(scelta2 == 1)
         Console.WriteLine("Spiacenti, libro non presente");
     }
 
-}/* else if( scelta2 == 2)
+} else if( scelta2 == 2)
 {
     Console.WriteLine("Inserisci il titolo o il regista del dvd da cercare:");
     string cercaDvd = Console.ReadLine();
