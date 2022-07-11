@@ -2,6 +2,8 @@
 
 using csharp_biblioteca;
 
+using System.Data.SqlClient;
+
 Console.WriteLine("Menu Biblioteca");
 Console.WriteLine("1. Registrati");
 Console.WriteLine("2. Login");
