@@ -4,17 +4,17 @@ using csharp_biblioteca;
 
 using System.Data.SqlClient;
 
-
 Console.WriteLine("Menu Biblioteca");
 Console.WriteLine("1. Registrati");
 Console.WriteLine("2. Login");
 
 int scelta1 = Int32.Parse(Console.ReadLine());
 
+Sistem call = new Sistem();
+
 if(scelta1 == 1)
 {
-    Biblioteca uno = new Biblioteca();
-    uno.NewUser();
+    call.AddUtente();
 } else if(scelta1 == 2)
 {
     Console.WriteLine("Inserisci nome utente per effettuare il login");
@@ -24,7 +24,7 @@ if(scelta1 == 1)
     Console.WriteLine("Inserisci password utente per effettuare il login");
     string pwUser = Console.ReadLine();
 
-    bool test = new Biblioteca().CheckUser(logUser, pwUser);
+    /*bool test = new Biblioteca().CheckUser(logUser, pwUser);
 
     if(test == true)
     {
@@ -33,12 +33,39 @@ if(scelta1 == 1)
     else
     {
         Console.WriteLine("Utente non trovato");
+    }*/
+
+    using (SqlConnection connessione = new SqlConnection("Data Source=localhost;Initial Catalog=biblioteca-db;Integrated Security=True"))
+    {
+        try
+        {
+            connessione.Open();
+            string query = "SELECT nome, password FROM Utente WHERE name = '" + logUser  + "' AND password = '" + pwUser + "';";
+            using(SqlCommand cmd = connessione.CreateCommand())
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read() == true)
+                {
+                    Console.WriteLine($"Ciao {logUser}, accesso effettuato!");
+                }
+                else
+                {
+                    Console.WriteLine("Utente inesistente!");
+                }
+            }
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+        connessione.Close();
     }
+
 }
 
 Console.WriteLine("Accesso effettuato, cosa vuoi fare?");
 Console.WriteLine("1. Cerca Libro");
-Console.WriteLine("2. Cerca Dvd");
+//Console.WriteLine("2. Cerca Dvd");
 int scelta2 = Int32.Parse(Console.ReadLine());
 
 if(scelta2 == 1)
@@ -70,7 +97,7 @@ if(scelta2 == 1)
         Console.WriteLine("Spiacenti, libro non presente");
     }
 
-} else if( scelta2 == 2)
+}/* else if( scelta2 == 2)
 {
     Console.WriteLine("Inserisci il titolo o il regista del dvd da cercare:");
     string cercaDvd = Console.ReadLine();
@@ -101,6 +128,6 @@ if(scelta2 == 1)
     {
         Console.WriteLine("Spiacenti, dvd non trovato");
     }
-}
+}*/
 
 

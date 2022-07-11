@@ -16,7 +16,7 @@ namespace csharp_biblioteca
             listaUtenti.Add(new User("Rassell", "Crow", "crow@email.it", "crow3", "331525252"));
         }
 
-        public void NewUser()
+        public User NewUser()
         {
             Console.WriteLine("inserisci nome");
             string nome = Console.ReadLine();
@@ -49,6 +49,8 @@ namespace csharp_biblioteca
             {
                 Console.WriteLine(user.ToString());
             }
+
+            return utente;
         }
 
         public bool CheckUser(string logName, string logPassword)
