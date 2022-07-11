@@ -51,5 +51,45 @@ namespace csharp_biblioteca
                 connessione.Close();
             }
         }
+
+        public void LogUtente()
+        {
+            Console.WriteLine("Inserisci nome per effettuare il login");
+            string logUser = Console.ReadLine();
+
+            Console.WriteLine("Inserisci la password per effettuare il login");
+            string pwUser = Console.ReadLine();
+
+            using (SqlConnection connessione = new SqlConnection("Data Source=localhost;Initial Catalog=biblioteca-db;Integrated Security=True"))
+            {
+                try
+                {
+                    connessione.Open();
+                    string query = "SELECT nome, password FROM Utente WHERE nome = '" + logUser + "' AND password = '" + pwUser + "';";
+                    SqlCommand cmd = connessione.CreateCommand();
+                    
+                    cmd.Connection = connessione;
+                    cmd.CommandText = query;
+                    
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        
+                        if (reader.Read() == true)
+                        {
+                            Console.WriteLine($"Ciao {logUser}, accesso effettuato!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Utente inesistente!");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                connessione.Close();
+            }
+        }
     }
 }

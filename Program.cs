@@ -17,14 +17,14 @@ if(scelta1 == 1)
     call.AddUtente();
 } else if(scelta1 == 2)
 {
-    Console.WriteLine("Inserisci nome utente per effettuare il login");
+    /*Console.WriteLine("Inserisci nome utente per effettuare il login");
     string logUser = Console.ReadLine();
 
 
     Console.WriteLine("Inserisci password utente per effettuare il login");
     string pwUser = Console.ReadLine();
 
-    /*bool test = new Biblioteca().CheckUser(logUser, pwUser);
+    bool test = new Biblioteca().CheckUser(logUser, pwUser);
 
     if(test == true)
     {
@@ -34,32 +34,7 @@ if(scelta1 == 1)
     {
         Console.WriteLine("Utente non trovato");
     }*/
-
-    using (SqlConnection connessione = new SqlConnection("Data Source=localhost;Initial Catalog=biblioteca-db;Integrated Security=True"))
-    {
-        try
-        {
-            connessione.Open();
-            string query = "SELECT nome, password FROM Utente WHERE name = '" + logUser  + "' AND password = '" + pwUser + "';";
-            using(SqlCommand cmd = connessione.CreateCommand())
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                if (reader.Read() == true)
-                {
-                    Console.WriteLine($"Ciao {logUser}, accesso effettuato!");
-                }
-                else
-                {
-                    Console.WriteLine("Utente inesistente!");
-                }
-            }
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        connessione.Close();
-    }
+    call.LogUtente();
 
 }
 
